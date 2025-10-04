@@ -16,20 +16,20 @@ enum dirEnum : uint8_t{
 }
 
 enum buttonEnum : uint8_t {
-  triangle = 5,
-  circle = 6,
-  cross = 7,
-  square = 8,
-  SHARE = 9,
-  OPTIONS = 10,
-  PS = 11,
-  L1 = 12,
-  L2 = 13,
-  L3 = 14,
-  R1 = 15,
-  R2 = 16,
-  R3 = 17,
-  touchpad = 18,
+  triangle = 1,
+  circle = 2,
+  cross = 3,
+  square = 4,
+  SHARE = 5,
+  OPTIONS = 6,
+  PS = 7,
+  L1 = 8,
+  L2 = 9,
+  L3 = 10,
+  R1 = 11,
+  R2 = 12,
+  R3 = 13,
+  touchpad = 14,
 };
 
 enum sideEnum : uint8_t {
