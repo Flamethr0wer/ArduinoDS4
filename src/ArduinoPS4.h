@@ -106,4 +106,6 @@ class ArduinoPS4 {
     void controllerOutHandler();
 };
 
+extern ArduinoPS4 arduinoPS4;
+
 #endif
