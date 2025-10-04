@@ -1,7 +1,7 @@
-#include "ArduinoDS4.h"
+#include "ArduinoPS4.h"
 
 #if defined(USBCON)
-	#ifndef ARDUINODS4_USB
+	#ifndef ARDUINOPS4_USB
 		#warning "You need to select [____ as DS4] in the boards tab to be able to communicate with your PlayStation!"
 	#endif
 #else
