@@ -104,6 +104,7 @@ class ArduinoPS4 {
     void writeToEndpoint(const uint8_t* data, uint8_t len);
     void txInterruptCallback();
     void controllerOutHandler();
+    bool ArduinoPS4Active; = false;
 };
 
 extern ArduinoPS4 arduinoPS4;
