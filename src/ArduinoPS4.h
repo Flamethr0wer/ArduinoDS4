@@ -3,11 +3,19 @@
 
 #include <Arduino.h>
 
+enum dirEnum : uint8_t{
+  up = 1,
+  upRight 2,
+  right = 3,
+  downRight = 4,
+  down = 5,
+  downLeft = 6,
+  left = 7,
+  upLeft = 8,
+  released = 9,
+}
+
 enum buttonEnum : uint8_t {
-  dpadUp = 1,
-  dpadRight = 2,
-  dpadDown = 3,
-  dpadLeft = 4,
   triangle = 5,
   circle = 6,
   cross = 7,
@@ -37,6 +45,7 @@ enum axisEnum : uint8_t {
 class ArduinoPS4 {
   public:
     void begin();
+    void setDpad(dirEnum direction);
     void setButton(buttonEnum button, bool state);
     void setTrigger(sideEnum trigger, uint8_t value);
     void setJoystick(sideEnum joystick, axisEnum axis, uint8_t value);
