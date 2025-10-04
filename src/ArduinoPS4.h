@@ -3,9 +3,9 @@
 
 #include <Arduino.h>
 
-enum dirEnum : uint8_t{
+enum dirEnum : uint8_t {
   up = 1,
-  upRight 2,
+  upRight = 2,
   right = 3,
   downRight = 4,
   down = 5,
@@ -13,7 +13,7 @@ enum dirEnum : uint8_t{
   left = 7,
   upLeft = 8,
   released = 9,
-}
+};
 
 enum buttonEnum : uint8_t {
   triangle = 1,
@@ -45,6 +45,7 @@ enum axisEnum : uint8_t {
 class ArduinoPS4 {
   public:
     void begin();
+    void maintainConnection();
     void setDpad(dirEnum direction);
     void setButton(buttonEnum button, bool state);
     void setTrigger(sideEnum trigger, uint8_t value);
@@ -108,12 +109,14 @@ class ArduinoPS4 {
       uint8_t mystery2[22];
     } __attribute__((packed));
     DS4Report report;
-    volatile uint32_t timestamp = 0;
+    volatile uint16_t timestamp = 0;
+    volatile uint8_t reportCounter = 0;
     unsigned long lastReport = 0;
+    unsigned long lastReconnect = 0;
     void writeToEndpoint(const uint8_t* data, uint8_t len);
     void txInterruptCallback();
     void controllerOutHandler();
-    bool ArduinoPS4Active; = false;
+    bool ArduinoPS4Active = false;
 };
 
 extern ArduinoPS4 arduinoPS4;
