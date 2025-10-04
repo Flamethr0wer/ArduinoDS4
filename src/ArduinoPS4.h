@@ -22,29 +22,24 @@ enum buttonEnum : uint8_t {
   R2 = 16,
   R3 = 17,
   touchpad = 18,
-}
+};
 
-enum triggerEnum : uint8_t {
+enum sideEnum : uint8_t {
   left = 1,
   right = 2,
-}
-
-enum joystickEnum : uint8_t {
-  left = 1,
-  right = 2,
-}
+};
 
 enum axisEnum : uint8_t {
   X = 0,
   Y = 1,
-}
+};
 
 class ArduinoPS4 {
   public:
     void begin();
     void setButton(buttonEnum button, bool state);
-    void setTrigger(triggerEnum trigger, uint8_t value);
-    void setJoystick(joystickEnum joystick, axisEnum axis, uint8_t value);
+    void setTrigger(sideEnum trigger, uint8_t value);
+    void setJoystick(sideEnum joystick, axisEnum axis, uint8_t value);
   private:
     struct DS4Report {
       uint8_t reportID;
@@ -109,6 +104,6 @@ class ArduinoPS4 {
     void writeToEndpoint(const uint8_t* data, uint8_t len);
     void txInterruptCallback();
     void controllerOutHandler();
-}
+};
 
 #endif
