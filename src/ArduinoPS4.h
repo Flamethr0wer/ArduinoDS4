@@ -1,38 +1,50 @@
-#idndef ARDUINOPS4_H
+#ifndef ARDUINOPS4_H
 #define ARDUINOPS4_H
 
 #include <Arduino.h>
 
-#define dpadUp 1
-#define dpadRight 2
-#define dpadDown 3
-#define dpadLeft 4
-#define triangle 5
-#define circle 6
-#define cross 7
-#define square 8
-#define SHARE 9
-#define OPTIONS 10
-#define PS 11
-#define L1 12
-#define L2 13
-#define L3 14
-#define R1 15
-#define R2 16
-#define R3 17
-#define touchpad 18
+enum buttonEnum : uint8_t {
+  dpadUp = 1,
+  dpadRight = 2,
+  dpadDown = 3,
+  dpadLeft = 4,
+  triangle = 5,
+  circle = 6,
+  cross = 7,
+  square = 8,
+  SHARE = 9,
+  OPTIONS = 10,
+  PS = 11,
+  L1 = 12,
+  L2 = 13,
+  L3 = 14,
+  R1 = 15,
+  R2 = 16,
+  R3 = 17,
+  touchpad = 18,
+}
 
-#define left 0
-#define right 1
-#define X 0
-#define Y 1
+enum triggerEnum : uint8_t {
+  left = 1,
+  right = 2,
+}
+
+enum joystickEnum : uint8_t {
+  left = 1,
+  right = 2,
+}
+
+enum axisEnum : uint8_t {
+  X = 0,
+  Y = 1,
+}
 
 class ArduinoPS4 {
   public:
     void begin();
-    void setButton(uint8_t button, bool state);
-    void setTrigger(uint8_t trigger, uint8_t value);
-    void setJoystick(bool joystick, bool axis, uint8_t value);
+    void setButton(buttonEnum button, bool state);
+    void setTrigger(triggerEnum trigger, uint8_t value);
+    void setJoystick(joystickEnum joystick, axisEnum axis, uint8_t value);
   private:
     struct DS4Report {
       uint8_t reportID;
@@ -95,8 +107,8 @@ class ArduinoPS4 {
     volatile uint32_t timestamp = 0;
     unsigned long lastReport = 0;
     void writeToEndpoint(const uint8_t* data, uint8_t len);
-    void txInterruptCallback()
-    void controllerOutHandler()
+    void txInterruptCallback();
+    void controllerOutHandler();
 }
 
 #endif
