@@ -38,8 +38,8 @@ enum sideEnum : uint8_t {
 };
 
 enum axisEnum : uint8_t {
-  X = 0,
-  Y = 1,
+  X = 1,
+  Y = 2,
 };
 
 class ArduinoPS4 {
