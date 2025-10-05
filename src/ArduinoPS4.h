@@ -113,10 +113,9 @@ class ArduinoPS4 {
     volatile uint8_t reportCounter = 0;
     unsigned long lastReport = 0;
     unsigned long lastReconnect = 0;
-    void writeToEndpoint(const uint8_t* data, uint8_t len);
-    void txInterruptCallback();
-    void controllerOutHandler();
-    bool ArduinoPS4Active = false;
+    static void writeToEndpoint(const uint8_t* data, uint8_t len);
+    static void txInterruptCallback();
+    static void controllerOutHandler();
 };
 
 extern ArduinoPS4 arduinoPS4;
