@@ -4,22 +4,22 @@
 #include <Arduino.h>
 
 enum dirEnum : uint8_t {
-  up = 1,
-  upRight = 2,
-  right = 3,
-  downRight = 4,
-  down = 5,
-  downLeft = 6,
-  left = 7,
-  upLeft = 8,
-  released = 9,
+  NORTH = 1,
+  NE = 2,
+  EAST = 3,
+  SE = 4,
+  SOUTH = 5,
+  SW = 6,
+  WEST = 7,
+  NW = 8,
+  RELEASED = 9,
 };
 
 enum buttonEnum : uint8_t {
-  triangle = 1,
-  circle = 2,
-  cross = 3,
-  square = 4,
+  TRIANGLE = 1,
+  CIRCLE = 2,
+  CROSS = 3,
+  SQUARE = 4,
   SHARE = 5,
   OPTIONS = 6,
   PS = 7,
@@ -29,12 +29,12 @@ enum buttonEnum : uint8_t {
   R1 = 11,
   R2 = 12,
   R3 = 13,
-  touchpad = 14,
+  TOUCHPAD = 14,
 };
 
 enum sideEnum : uint8_t {
-  left = 1,
-  right = 2,
+  LEFT = 1,
+  RIGHT = 2,
 };
 
 enum axisEnum : uint8_t {
