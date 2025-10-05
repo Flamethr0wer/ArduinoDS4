@@ -85,12 +85,12 @@ void ArduinoPS4::maintainConnection() {
     	UDCON |= (1 << DETACH);
   		delay(100);
   		UDCON &= ~(1 << DETACH);
+		lastReconnect = millis();
 		report.buttonHome = 0x01;
 		forceSend();
 		delay(100);
 		report.buttonHome=0x00;
 		forceSend();
-    	lastReconnect = millis();
   	}
 }
 
