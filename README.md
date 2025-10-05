@@ -1,6 +1,8 @@
 # PS4Arduino
 This library will allow you to turn your Arduino into a controller fully compatible with PS4!
 
+**IMPORTANT: You must install the PS4Arduino-AVR core for the library to work. Instructions [here](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md).**
+
 ## How to use
 Really simple! This library includes 6 functions to cover all inputs:
 
@@ -43,7 +45,7 @@ Really simple! This library includes 6 functions to cover all inputs:
 
 - `PS4controller.maintainConnection()`: You must call this frequently (e.g. once per loop) to prevent the board from being disconnected from your PS4.
 
-And that's about it! You can take a look at this example for further reference.
+And that's about it! You can take a look at [this example](https://github.com/Flamethr0wer/PS4Arduino/blob/main/examples/usage_example.ino) for further reference.
 
 ## Currently supported boards:
 - Arduino Leonardo
