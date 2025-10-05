@@ -4,15 +4,15 @@
 #include <Arduino.h>
 
 enum dirEnum : uint8_t {
-  NORTH = 1,
-  NE = 2,
-  EAST = 3,
-  SE = 4,
-  SOUTH = 5,
-  SW = 6,
-  WEST = 7,
-  NW = 8,
-  RELEASED = 9,
+  DPAD_N = 1,
+  DPAD_NE = 2,
+  DPAD_E = 3,
+  DPAD_SE = 4,
+  DPAD_S = 5,
+  DPAD_SW = 6,
+  DPAD_W = 7,
+  DPAD_NW = 8,
+  DPAD_RELEASED = 9,
 };
 
 enum buttonEnum : uint8_t {
