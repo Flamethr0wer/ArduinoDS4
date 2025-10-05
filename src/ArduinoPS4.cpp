@@ -12,16 +12,6 @@ void ArduinoPS4::writeToEndpoint(const uint8_t* data, uint8_t len) {
   	}
 }
 
-void ArduinoPS4::forceSend() {
-	noInterrupts();
-  	UENUM = ARDUINOPS4_TX_ENDPOINT;
-  	if (UEINTX & (1 << RWAL)) {
-    	writeToEndpoint((const uint8_t*)&report, sizeof(report));
-    	UEINTX &= ~(1 << FIFOCON);
-  	}
-  	interrupts();
-}
-
 void ArduinoPS4::txInterruptCallback() {
   	arduinoPS4.reportCounter = (arduinoPS4.reportCounter + 1) & 0x3F;
 	arduinoPS4.report.reportCounter = arduinoPS4.reportCounter;
@@ -71,13 +61,27 @@ void ArduinoPS4::begin(){
 	ArduinoPS4USB::setSendCallback(txInterruptCallback);
   	ArduinoPS4USB::setRecvCallback(controllerOutHandler);
 
-	forceSend();
+	noInterrupts();
+  	UENUM = ARDUINOPS4_TX_ENDPOINT;
+  	if (UEINTX & (1 << RWAL)) {
+    	writeToEndpoint((const uint8_t*)&report, sizeof(report));
+    	UEINTX &= ~(1 << FIFOCON);
+  	}
+  	interrupts();
+
 	delay(1000);
 	report.buttonHome = 0x01;
-	forceSend();
+
+	noInterrupts();
+  	UENUM = ARDUINOPS4_TX_ENDPOINT;
+  	if (UEINTX & (1 << RWAL)) {
+    	writeToEndpoint((const uint8_t*)&report, sizeof(report));
+    	UEINTX &= ~(1 << FIFOCON);
+  	}
+  	interrupts();
+	
 	delay(100);
 	report.buttonHome = 0x00;
-	forceSend();
 }
 
 void ArduinoPS4::maintainConnection() {
@@ -87,10 +91,17 @@ void ArduinoPS4::maintainConnection() {
   		UDCON &= ~(1 << DETACH);
 		lastReconnect = millis();
 		report.buttonHome = 0x01;
-		forceSend();
+		
+		noInterrupts();
+  		UENUM = ARDUINOPS4_TX_ENDPOINT;
+  		if (UEINTX & (1 << RWAL)) {
+    		writeToEndpoint((const uint8_t*)&report, sizeof(report));
+    		UEINTX &= ~(1 << FIFOCON);
+  		}
+  		interrupts();
+		
 		delay(100);
 		report.buttonHome=0x00;
-		forceSend();
   	}
 }
 
