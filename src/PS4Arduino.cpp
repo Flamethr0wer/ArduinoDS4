@@ -1,32 +1,32 @@
-#include "ArduinoPS4.h"
+#include "PS4Arduino.h"
 
-#if defined(USBCON) && !defined(ARDUINOPS4_USB)
+#if defined(USBCON) && !defined(PS4ARDUINO_USB)
 	#warning "You need to select [____ as PS4 controller] in the boards tab to be able to communicate with your PlayStation!"
 #endif
 
-ArduinoPS4 arduinoPS4;
+PS4Arduino PS4controller;
 
-void ArduinoPS4::writeToEndpoint(const uint8_t* data, uint8_t len) {
+void PS4Arduino::writeToEndpoint(const uint8_t* data, uint8_t len) {
   	for (uint8_t i = 0; i < len; i++) {
     	UEDATX = data[i];
   	}
 }
 
-void ArduinoPS4::txInterruptCallback() {
-  	arduinoPS4.reportCounter = (arduinoPS4.reportCounter + 1) & 0x3F;
-	arduinoPS4.report.reportCounter = arduinoPS4.reportCounter;
-  	arduinoPS4.timestamp++;
-  	arduinoPS4.report.axisTiming = arduinoPS4.timestamp;
-  	arduinoPS4.writeToEndpoint((const uint8_t*)&arduinoPS4.report, sizeof(arduinoPS4.report));
+void PS4Arduino::txInterruptCallback() {
+  	PS4controller.reportCounter = (PS4controller.reportCounter + 1) & 0x3F;
+	PS4controller.report.reportCounter = PS4controller.reportCounter;
+  	PS4controller.timestamp++;
+  	PS4controller.report.axisTiming = PS4controller.timestamp;
+  	PS4controller.writeToEndpoint((const uint8_t*)&PS4controller.report, sizeof(PS4controller.report));
   	UEINTX &= ~(1 << FIFOCON);
 }
 
-void ArduinoPS4::controllerOutHandler() {
+void PS4Arduino::controllerOutHandler() {
 	uint8_t buf[64];
-    int n = USB_Recv(ARDUINOPS4_RX_ENDPOINT, buf, USB_Available(ARDUINOPS4_RX_ENDPOINT));
+    int n = USB_Recv(PS4ARDUINO_RX_ENDPOINT, buf, USB_Available(PS4ARDUINO_RX_ENDPOINT));
 }
 
-void ArduinoPS4::begin(){
+void PS4Arduino::begin(){
 	memset(&report, 0, sizeof(report));
 	report.reportID = 0x01;
 	report.leftStickX = 0x80;
@@ -58,11 +58,11 @@ void ArduinoPS4::begin(){
 	report.accy = 0x0000;
 	report.accz = 0x2000;
 
-	ArduinoPS4USB::setSendCallback(txInterruptCallback);
-  	ArduinoPS4USB::setRecvCallback(controllerOutHandler);
+	PS4ArduinoUSB::setSendCallback(txInterruptCallback);
+  	PS4ArduinoUSB::setRecvCallback(controllerOutHandler);
 
 	noInterrupts();
-  	UENUM = ARDUINOPS4_TX_ENDPOINT;
+  	UENUM = PS4ARDUINO_TX_ENDPOINT;
   	if (UEINTX & (1 << RWAL)) {
     	writeToEndpoint((const uint8_t*)&report, sizeof(report));
     	UEINTX &= ~(1 << FIFOCON);
@@ -73,7 +73,7 @@ void ArduinoPS4::begin(){
 	report.buttonHome = 0x01;
 
 	noInterrupts();
-  	UENUM = ARDUINOPS4_TX_ENDPOINT;
+  	UENUM = PS4ARDUINO_TX_ENDPOINT;
   	if (UEINTX & (1 << RWAL)) {
     	writeToEndpoint((const uint8_t*)&report, sizeof(report));
     	UEINTX &= ~(1 << FIFOCON);
@@ -84,7 +84,7 @@ void ArduinoPS4::begin(){
 	report.buttonHome = 0x00;
 }
 
-void ArduinoPS4::maintainConnection() {
+void PS4Arduino::maintainConnection() {
   	if (millis() - lastReconnect >= 480000) {
     	UDCON |= (1 << DETACH);
   		delay(100);
@@ -93,7 +93,7 @@ void ArduinoPS4::maintainConnection() {
 		report.buttonHome = 0x01;
 		
 		noInterrupts();
-  		UENUM = ARDUINOPS4_TX_ENDPOINT;
+  		UENUM = PS4ARDUINO_TX_ENDPOINT;
   		if (UEINTX & (1 << RWAL)) {
     		writeToEndpoint((const uint8_t*)&report, sizeof(report));
     		UEINTX &= ~(1 << FIFOCON);
@@ -105,7 +105,7 @@ void ArduinoPS4::maintainConnection() {
   	}
 }
 
-void ArduinoPS4::setDpad(dirEnum direction) {
+void PS4Arduino::setDpad(dirEnum direction) {
 	if(direction == 1) {report.dpad = 0;}
 	else if(direction == 2) {report.dpad = 1;}
 	else if(direction == 3) {report.dpad = 2;}
@@ -117,7 +117,7 @@ void ArduinoPS4::setDpad(dirEnum direction) {
 	else if(direction == 9) {report.dpad = 8;}
 }
 
-void ArduinoPS4::setButton(buttonEnum button, bool state) {
+void PS4Arduino::setButton(buttonEnum button, bool state) {
 	if(button == 1) {report.buttonNorth = state;}
 	else if(button == 2) {report.buttonEast = state;}
 	else if(button == 3) {report.buttonSouth = state;}
@@ -134,12 +134,12 @@ void ArduinoPS4::setButton(buttonEnum button, bool state) {
 	else if(button == 14) {report.buttonTouchpad = state; }
 }
 
-void ArduinoPS4::setTrigger(sideEnum trigger, uint8_t value) {
+void PS4Arduino::setTrigger(sideEnum trigger, uint8_t value) {
 	if(trigger == 1) {report.leftTrigger = value;}
 	else if(trigger == 2) {report.rightTrigger = value;}
 }
 
-void ArduinoPS4::setJoystick(sideEnum joystick, axisEnum axis, uint8_t value) {
+void PS4Arduino::setJoystick(sideEnum joystick, axisEnum axis, uint8_t value) {
 	if(joystick == 1 && axis == 1) {report.leftStickX = value;}
 	else if(joystick == 1 && axis == 2) {report.leftStickY = value;}
 	else if(joystick == 2 && axis == 1) {report.rightStickX = value;}
