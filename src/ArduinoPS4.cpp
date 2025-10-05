@@ -4,6 +4,8 @@
 	#warning "You need to select [____ as PS4 controller] in the boards tab to be able to communicate with your PlayStation!"
 #endif
 
+ArduinoPS4 arduinoPS4;
+
 void ArduinoPS4::writeToEndpoint(const uint8_t* data, uint8_t len) {
   	for (uint8_t i = 0; i < len; i++) {
     	UEDATX = data[i];
