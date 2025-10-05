@@ -90,7 +90,7 @@ void PS4Arduino::maintainConnection() {
   		delay(100);
   		UDCON &= ~(1 << DETACH);
 		lastReconnect = millis();
-		delay(1000);
+		delay(500);
 		PS4ArduinoUSB::setSendCallback(txInterruptCallback);
 		PS4ArduinoUSB::setRecvCallback(controllerOutHandler);
 		
