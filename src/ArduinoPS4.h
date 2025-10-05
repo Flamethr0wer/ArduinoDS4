@@ -114,6 +114,7 @@ class ArduinoPS4 {
     unsigned long lastReport = 0;
     unsigned long lastReconnect = 0;
     static void writeToEndpoint(const uint8_t* data, uint8_t len);
+    static void forceSend();
     static void txInterruptCallback();
     static void controllerOutHandler();
 };
