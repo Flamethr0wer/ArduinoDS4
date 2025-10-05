@@ -1,5 +1,5 @@
-#ifndef ARDUINOPS4_H
-#define ARDUINOPS4_H
+#ifndef PS4ARDUINO_H
+#define PS4ARDUINO_H
 
 #include <Arduino.h>
 
@@ -42,7 +42,7 @@ enum axisEnum : uint8_t {
   Y = 2,
 };
 
-class ArduinoPS4 {
+class PS4Arduino {
   public:
     void begin();
     void maintainConnection();
@@ -118,6 +118,6 @@ class ArduinoPS4 {
     static void controllerOutHandler();
 };
 
-extern ArduinoPS4 arduinoPS4;
+extern PS4Arduino PS4controller;
 
 #endif
