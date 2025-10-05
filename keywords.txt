@@ -1,4 +1,4 @@
-arduinoPS4  KEYWORD1
+PS4controller  KEYWORD1
 begin  KEYWORD2
 maintainConnection  KEYWORD2
 setDpad  KEYWORD2
