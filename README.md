@@ -60,13 +60,13 @@ This section is for people newer to the Arduino ecosystem based on a contributer
 
 ### Plan
 
-1. get pre-requisites
-2. flash demo program
-3. test it
-4. iterate
-5. restore
+1. Pre-requisites
+2. Flash
+3. Test
+4. Iterate
+5. Restore
 
-### 1 pre-reqs
+### 1 Pre-requisites
 
 You'll need to get the following:
 
@@ -74,26 +74,29 @@ You'll need to get the following:
 2. PS4Arduino-AVR, follow [instructions](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md) also linked at top
 3. Install PS4Arduino library in Arduino IDE. Follow the [official docs](https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-installing-a-library/) to install `PS4Arduino`
 
-### 2 flash demo program
+### 2. Flash
 
-This will pause, move to the right, pause, move back to the left and then repeat over and over.
+This step will update the board's identity and upload a programme to your Arduino. The programme will pause, move to the right, pause, move back to the left and then repeat over and over.
 
 There are three steps to this:
 
-1. change board to "____ as PS4 controller"
-2. enter the sketch code
-3. upload to arduino
+2.1. Change board to "____ as PS4 controller"
+2.2. Enter the sketch code
+2.3. Upload to arduino
 
-#### 1 change board to ___ as PS4 controller
+#### 2.1. Change board to ___ as PS4 controller
+
+> [!NOTE]
+> Once the board is changed it will not appear under the Tools > Ports menu. See Iterate below for details.
 
 For a standard board, this should be simple the first time. Once connected, the board should appear in the Arduino IDE menu Tools > Ports.
 
-In order for the PS4 to recognise the Arduino as a controller, part of its firmware needs to be updated to be non-standard. This is so it can report to the PS4 that it is a controller rather than an Arduino. This has the side effect of making it not show up in the Arduino IDE next time but more on that below.
+In order for the PS4 to recognise the Arduino as a controller, part of its firmware needs to be updated to be non-standard. This is so it can report to the PS4 that it is a controller rather than an Arduino. This has the side effect of making it not show up in the Arduino IDE next time on your computer but more on that below.
 
-1. Connect board, confirm it appears in Tools > Ports. It will shows as COMn on windows where n is a number eg COM8.
+1. Connect board, confirm it appears in Tools > Ports. It will shows as `COMn` on windows where n is a number eg `COM8`.
 2. Override board type by selecting Tools > Board "{your board}" > "PS4Arduino AVR Boards" > "{your board} as PS4 contoller"
 
-#### 2 enter sketch code
+#### 2.2. Enter sketch code
 
 The sketch code is below, copy and paste this into the Arduino IDE:
 
@@ -120,30 +123,52 @@ void loop() {
 }
 ```
 
-#### upload to Arduino
+#### 2.2. Upload to Arduino
 
 As the board is connected as regular Arduino, this step is the same as other uploads: click the upload button.
 
 For future uploads, it will be different since the board is telling your computer that it is a PS4 controller rather than Arduino.
 
-### test it
+### 3. Test it
 
 Now is the time to take your hot flashed board and connect to your PS4. The best way to do this is as follows:
 
-1. turn on PS4 (normally with controller)
-2. get to a screen where you can test the code. In our example the home screen is ok
-3. if turned on with controller, press and hold the ps button on controller for 10 seconds for it to turn off
-4. connect arduino with usb cable
-5. observe your programme running!
+1. Turn on PS4 (normally with controller)
+2. Get to a screen where you can test the code. In our example the home screen is ok
+3. If turned on with controller, press and hold the ps button on controller for 10 seconds for it to turn off
+4. Connect arduino with usb cable
+5. Observe your programme running!
 
-### iterate
+### 4. Iterate
 
+As your board is now the "as PS4 controller" version, it will not show up on the Tools > Ports menu like it used to. This is a side effect of having it appear as a PS4 Controller.
+
+Do not fear! It is still possible to upload the image, you just need to try this one easy trick.
+
+1. Make the modification in your programme.
+2. Click the upload icon (or Sketch > Upload)
+3. While it is compiling, press the reset button on your Arduino
+    - On Windows with the Arduino IDE, this can be done 
+
+5. 
 TODO: note how have to click upload then press reset button
 
-### restore
+### 5. Restore
 
 If you wish to return your Arduino back to "normal" then you will need to reverse the change board steps above.
 
-1. Load Blink by File > Examples > 01 Basics > Blink
+1. In the Arduino IDE, load Blink by File > Examples > 01 Basics > Blink
 2. Set board type back to normal by selecting Tools > Board "{your board}" > "Arduino AVR Boards" > "{your board}"
 3. Upload following steps above ie click upload then press reset on the arduino board
+
+## Troubleshooting
+
+### error: 'PS4ARDUINO_RX_ENDPOINT' was not declared in this scope
+
+This error occurs if you are trying to use the PS4Arduino library but have not use the PS4Arduino-ARV to change the board type. Instructions [here](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md).
+
+### After first time, cannot find board (or similar)
+
+Once you have flashed the board with PS4Arduino-AVR, it does not show up on your computer as an Arduino. It appears as a game controller so the Arduino IDE cannot find it.
+
+To fix this, start uploading your programme and press the reset button on the Arduino board. More details above under "4. Iterate".
