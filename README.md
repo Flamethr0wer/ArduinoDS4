@@ -68,15 +68,16 @@ This section is for people newer to the Arduino ecosystem based on a contributer
 
 ### 1 Pre-requisites
 
-You'll need to get the following:
+You'll need to assemble the following:
 
-1. Arduino IDE - [official docs for download and install](https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-downloading-and-installing/)
+1. Arduino IDE to edit the programmes - [official docs for download and install](https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-downloading-and-installing/)
 2. PS4Arduino-AVR, follow [instructions](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md) also linked at top
-3. Install PS4Arduino library in Arduino IDE. Follow the [official docs](https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-installing-a-library/) to install `PS4Arduino`
+3. Install PS4Arduino library in Arduino IDE. Follow the [official docs](https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-installing-a-library/) to install `PS4Arduino`. Make sure it is at least v1.0.1
+4. A physical Arduino board, see supported boards above
 
 ### 2. Flash
 
-This step will update the board's identity and upload a programme to your Arduino. The programme will pause, move to the right, pause, move back to the left and then repeat over and over.
+This step will update the board's identity and upload a programme/sketch to your Arduino. The programme will cause the controller to pause, move to the right, pause, move back to the left and repeat over and over.
 
 There are three steps to this:
 
@@ -148,10 +149,7 @@ Do not fear! It is still possible to upload the image, you just need to try this
 1. Make the modification in your programme.
 2. Click the upload icon (or Sketch > Upload)
 3. While it is compiling, press the reset button on your Arduino
-    - On Windows with the Arduino IDE, this can be done 
-
-5. 
-TODO: note how have to click upload then press reset button
+    - On Windows with the Arduino IDE, this can be done after the "Compiling sketch..." notification changes to "Uploading..."
 
 ### 5. Restore
 
@@ -167,8 +165,8 @@ If you wish to return your Arduino back to "normal" then you will need to revers
 
 This error occurs if you are trying to use the PS4Arduino library but have not use the PS4Arduino-ARV to change the board type. Instructions [here](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md).
 
-### After first time, cannot find board (or similar)
+### Failed uploading: uploading error: exit status 1
 
-Once you have flashed the board with PS4Arduino-AVR, it does not show up on your computer as an Arduino. It appears as a game controller so the Arduino IDE cannot find it.
+This can occur after you have used the board "_____ as PS4 controller" (PS4Arduino-AVR) as it shows up to the computer as a game controller rather than an Arduino.
 
-To fix this, start uploading your programme and press the reset button on the Arduino board. More details above under "4. Iterate".
+To fix this, start uploading your programme and press the reset button on the Arduino board. More details above under [4. Iterate](#4-iterate) above.
