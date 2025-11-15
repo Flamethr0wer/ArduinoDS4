@@ -56,7 +56,7 @@ And that's about it! You can take a look at [this example](https://github.com/Fl
 
 ## Step-by-step
 
-This section is for people newer to the Arduino ecosystem based on a contributer's learnings.
+This section is a step-by-step guide for people newer to the Arduino ecosystem. It will guide you through getting the required software to flash your arduino and control your PS4.
 
 ### Plan
 
@@ -66,7 +66,7 @@ This section is for people newer to the Arduino ecosystem based on a contributer
 4. Iterate
 5. Restore
 
-### 1 Pre-requisites
+### 1. Pre-requisites
 
 You'll need to assemble the following:
 
@@ -81,14 +81,14 @@ This step will update the board's identity and upload a programme/sketch to your
 
 There are three steps to this:
 
-2.1. Change board to "____ as PS4 controller"
-2.2. Enter the sketch code
-2.3. Upload to arduino
+1. Change board to "____ as PS4 controller"
+2. Enter sketch code
+3. Upload to arduino
 
-#### 2.1. Change board to ___ as PS4 controller
+#### 2.1. Change board to "____ as PS4 controller"
 
 > [!NOTE]
-> Once the board is changed it will not appear under the Tools > Ports menu. See Iterate below for details.
+> Once the board is changed it will not appear under the Tools > Ports menu. See [4. Iterate](#4-iterate) below for details.
 
 For a standard board, this should be simple the first time. Once connected, the board should appear in the Arduino IDE menu Tools > Ports.
 
@@ -128,9 +128,9 @@ void loop() {
 
 As the board is connected as regular Arduino, this step is the same as other uploads: click the upload button.
 
-For future uploads, it will be different since the board is telling your computer that it is a PS4 controller rather than Arduino.
+For future uploads, it will be different since the board is telling your computer that it is a PS4 controller rather than Arduino. See [4. Iterate](#4-iterate) below.
 
-### 3. Test it
+### 3. Test
 
 Now is the time to take your hot flashed board and connect to your PS4. The best way to do this is as follows:
 
@@ -142,7 +142,7 @@ Now is the time to take your hot flashed board and connect to your PS4. The best
 
 ### 4. Iterate
 
-As your board is now the "as PS4 controller" version, it will not show up on the Tools > Ports menu like it used to. This is a side effect of having it appear as a PS4 Controller.
+As your board is now the "____ as PS4 controller" version, it will not show up on the Tools > Ports menu like it used to. This is a side effect of having it appear as a PS4 Controller.
 
 Do not fear! It is still possible to upload the image, you just need to try this one easy trick.
 
@@ -150,14 +150,15 @@ Do not fear! It is still possible to upload the image, you just need to try this
 2. Click the upload icon (or Sketch > Upload)
 3. While it is compiling, press the reset button on your Arduino
     - On Windows with the Arduino IDE, this can be done after the "Compiling sketch..." notification changes to "Uploading..."
+    - If you get an upload error try pressing the reset button earlier or later
 
 ### 5. Restore
 
-If you wish to return your Arduino back to "normal" then you will need to reverse the change board steps above.
+**OPTIONAL**: If you wish to return your Arduino back to "normal" then you will need to reverse the change board steps above:
 
-1. In the Arduino IDE, load Blink by File > Examples > 01 Basics > Blink
+1. In the Arduino IDE, load a standard sketch eg Blink by File > Examples > 01 Basics > Blink
 2. Set board type back to normal by selecting Tools > Board "{your board}" > "Arduino AVR Boards" > "{your board}"
-3. Upload following steps above ie click upload then press reset on the arduino board
+3. Upload the standard AVR and sketch following steps above ie click upload then press reset on the arduino board
 
 ## Troubleshooting
 
