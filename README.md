@@ -70,14 +70,14 @@ This section is a step-by-step guide for people newer to the Arduino ecosystem. 
 
 You'll need to assemble the following:
 
-1. Arduino IDE to edit the programmes - [official docs for download and install](https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-downloading-and-installing/)
-2. PS4Arduino-AVR, follow [instructions](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md) also linked at top
-3. Install PS4Arduino library in Arduino IDE. Follow the [official docs](https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-installing-a-library/) to install `PS4Arduino`. Make sure it is at least v1.0.1
+1. Arduino IDE to edit the sketch - [official docs for download and install](https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-downloading-and-installing/)
+2. PS4Arduino-AVR, follow [instructions](https://github.com/Flamethr0wer/PS4Arduino-AVR/blob/master/README.md) linked at top
+3. Install PS4Arduino library in Arduino IDE. Follow the [official library install docs](https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-installing-a-library/) to install `PS4Arduino` by Flamethrower. Make sure it is at least v1.0.1
 4. A physical Arduino board, see supported boards above
 
 ### 2. Flash
 
-This step will update the board's identity and upload a programme/sketch to your Arduino. The programme will cause the controller to pause, move to the right, pause, move back to the left and repeat over and over.
+This step will update the board's identity and upload a sketch to your Arduino. The sketch will cause the controller to pause, move to the right, pause, move back to the left and repeat over and over.
 
 There are three steps to this:
 
@@ -138,7 +138,7 @@ Now is the time to take your hot flashed board and connect to your PS4. The best
 2. Get to a screen where you can test the code. In our example the home screen is ok
 3. If turned on with controller, press and hold the ps button on controller for 10 seconds for it to turn off
 4. Connect arduino with usb cable
-5. Observe your programme running!
+5. Observe your sketch running!
 
 ### 4. Iterate
 
@@ -146,7 +146,7 @@ As your board is now the "____ as PS4 controller" version, it will not show up o
 
 Do not fear! It is still possible to upload the image, you just need to try this one easy trick.
 
-1. Make the modification in your programme.
+1. Make the modification in your sketch.
 2. Click the upload icon (or Sketch > Upload)
 3. While it is compiling, press the reset button on your Arduino
     - On Windows with the Arduino IDE, this can be done after the "Compiling sketch..." notification changes to "Uploading..."
@@ -170,4 +170,4 @@ This error occurs if you are trying to use the PS4Arduino library but have not u
 
 This can occur after you have used the board "_____ as PS4 controller" (PS4Arduino-AVR) as it shows up to the computer as a game controller rather than an Arduino.
 
-To fix this, start uploading your programme and press the reset button on the Arduino board. More details above under [4. Iterate](#4-iterate) above.
+To fix this, start uploading your sketch and press the reset button on the Arduino board. More details above under [4. Iterate](#4-iterate) above.
