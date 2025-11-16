@@ -109,7 +109,6 @@ void setup() {
 }
 
 void loop() {
-
   delay(2000);
   PS4controller.setDpad(DPAD_E);         // D-pad right
   delay(50);
@@ -124,15 +123,15 @@ void loop() {
 }
 ```
 
-#### 2.2. Upload to Arduino
+#### 2.3. Upload to Arduino
 
-As the board is connected as regular Arduino, this step is the same as other uploads: click the upload button.
+As the board is connected as a regular Arduino, this step is the same as other uploads: click the upload button.
 
 For future uploads, it will be different since the board is telling your computer that it is a PS4 controller rather than Arduino. See [4. Iterate](#4-iterate) below.
 
 ### 3. Test
 
-Now is the time to take your hot flashed board and connect to your PS4. The best way to do this is as follows:
+Now is the time to take your flashed Arduino and connect to your PS4. The best way to do this is as follows:
 
 1. Turn on PS4 (normally with controller)
 2. Get to a screen where you can test the code. In our example the home screen is ok
@@ -144,7 +143,7 @@ Now is the time to take your hot flashed board and connect to your PS4. The best
 
 As your board is now the "____ as PS4 controller" version, it will not show up on the Tools > Ports menu like it used to. This is a side effect of having it appear as a PS4 Controller.
 
-Do not fear! It is still possible to upload the image, you just need to try this one easy trick.
+Do not fear! It is still possible to upload the image, you just need to try this one easy trick:
 
 1. Make the modification in your sketch.
 2. Click the upload icon (or Sketch > Upload)
