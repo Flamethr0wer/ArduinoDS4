@@ -87,15 +87,15 @@ There are three steps to this:
 
 #### 2.1. Change board to "____ as PS4 controller"
 
-> [!NOTE]
-> Once the board is changed it will not appear under the Tools > Ports menu. See [4. Iterate](#4-iterate) below for details.
-
 For a standard board, this should be simple the first time. Once connected, the board should appear in the Arduino IDE menu Tools > Ports.
 
 In order for the PS4 to recognise the Arduino as a controller, part of its firmware needs to be updated to be non-standard. This is so it can report to the PS4 that it is a controller rather than an Arduino. This has the side effect of making it not show up in the Arduino IDE next time on your computer but more on that below.
 
 1. Connect board, confirm it appears in Tools > Ports. It will shows as `COMn` on windows where n is a number eg `COM8`.
 2. Override board type by selecting Tools > Board "{your board}" > "PS4Arduino AVR Boards" > "{your board} as PS4 contoller"
+
+> [!NOTE]
+> Once the board is changed it will not appear under the Tools > Ports menu. See [4. Iterate](#4-iterate) below for details.
 
 #### 2.2. Enter sketch code
 
